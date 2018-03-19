@@ -56,6 +56,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeTrue;
 
 
@@ -131,8 +132,37 @@ public class OpenSslEngineTest extends SSLEngineTest {
         super.testClientHostnameValidationFail();
     }
 
+    private static boolean isNpnSupported(String versionString) {
+        String[] versionStringParts = versionString.split(" ");
+        if (versionStringParts.length == 2 && "LibreSSL".equals(versionStringParts[0])) {
+            String[] versionParts = versionStringParts[1].split("\\.");
+            if (versionParts.length == 3) {
+                int major = Integer.parseInt(versionParts[0]);
+                if (major < 2) {
+                    return true;
+                }
+                if (major > 2) {
+                    return false;
+                }
+                int minor = Integer.parseInt(versionParts[1]);
+                if (minor < 6) {
+                    return true;
+                }
+                if (minor > 6) {
+                    return false;
+                }
+                int bugfix = Integer.parseInt(versionParts[2]);
+                if (bugfix > 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     @Test
     public void testNpn() throws Exception {
+        String versionString = OpenSsl.versionString();
+        assumeFalse("LibreSSL 2.6.1 removed NPN support, detected " + versionString, isNpnSupported(versionString));
         ApplicationProtocolConfig apn = acceptingNegotiator(Protocol.NPN,
                 PREFERRED_APPLICATION_LEVEL_PROTOCOL);
         setupHandlers(apn);
