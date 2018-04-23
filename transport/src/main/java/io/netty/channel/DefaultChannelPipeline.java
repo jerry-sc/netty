@@ -61,10 +61,18 @@ public class DefaultChannelPipeline implements ChannelPipeline {
     private static final AtomicReferenceFieldUpdater<DefaultChannelPipeline, MessageSizeEstimator.Handle> ESTIMATOR =
             AtomicReferenceFieldUpdater.newUpdater(
                     DefaultChannelPipeline.class, MessageSizeEstimator.Handle.class, "estimatorHandle");
+
+    /**
+     * 维护一个双向链表，连接所有pipeline
+     */
     final AbstractChannelHandlerContext head;
     final AbstractChannelHandlerContext tail;
 
+    /**
+     * 每个pipeline都会与一个channel相关联
+     */
     private final Channel channel;
+
     private final ChannelFuture succeededFuture;
     private final VoidChannelPromise voidPromise;
     private final boolean touch = ResourceLeakDetector.isEnabled();

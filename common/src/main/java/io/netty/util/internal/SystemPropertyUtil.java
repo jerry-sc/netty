@@ -22,6 +22,8 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 
 /**
+ * 用于系统配置属性的解析
+ *
  * A collection of utility methods to retrieve and parse the values of the Java system properties.
  */
 public final class SystemPropertyUtil {

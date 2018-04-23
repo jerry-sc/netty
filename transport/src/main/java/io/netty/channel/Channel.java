@@ -194,6 +194,8 @@ public interface Channel extends AttributeMap, ChannelOutboundInvoker, Comparabl
     Channel flush();
 
     /**
+     * 封装了与java底层socket操作，这些方法用户不能也不应该使用
+     *
      * <em>Unsafe</em> operations that should <em>never</em> be called from user-code. These methods
      * are only provided to implement the actual transport, and must be invoked from an I/O thread except for the
      * following methods:

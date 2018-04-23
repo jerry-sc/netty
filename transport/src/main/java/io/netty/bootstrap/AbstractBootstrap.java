@@ -52,9 +52,18 @@ public abstract class AbstractBootstrap<B extends AbstractBootstrap<B, C>, C ext
     volatile EventLoopGroup group;
     @SuppressWarnings("deprecation")
     private volatile ChannelFactory<? extends C> channelFactory;
+
+    /**
+     * 本地地址
+     */
     private volatile SocketAddress localAddress;
+
+    /**
+     * 存储ChannelOption 存储
+     */
     private final Map<ChannelOption<?>, Object> options = new LinkedHashMap<ChannelOption<?>, Object>();
     private final Map<AttributeKey<?>, Object> attrs = new LinkedHashMap<AttributeKey<?>, Object>();
+
     private volatile ChannelHandler handler;
 
     AbstractBootstrap() {

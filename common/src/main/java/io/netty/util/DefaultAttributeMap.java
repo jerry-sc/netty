@@ -20,6 +20,10 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 /**
+ * 可以看做是一个自己实现的可用于并发的hashMap（里面解释说，并没有直接使用ConcurrentHashMap 是因为减少内存消耗）
+ *
+ * 每个bucket元素，使用尾插法插入新的元素
+ *
  * Default {@link AttributeMap} implementation which use simple synchronization per bucket to keep the memory overhead
  * as low as possible.
  */

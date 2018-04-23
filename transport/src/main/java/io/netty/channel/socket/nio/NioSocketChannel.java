@@ -72,6 +72,7 @@ public class NioSocketChannel extends AbstractNioByteChannel implements io.netty
     private final SocketChannelConfig config;
 
     /**
+     * Bootstrap 会调用默认构造函数进行初始化
      * Create a new instance
      */
     public NioSocketChannel() {

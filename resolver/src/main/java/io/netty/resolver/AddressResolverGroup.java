@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 /**
+ * 一个EventExecutor 对应一个 名字解析器，该类维护了对应关系
  * Creates and manages {@link NameResolver}s so that each {@link EventExecutor} has its own resolver instance.
  */
 @UnstableApi

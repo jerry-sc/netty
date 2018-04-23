@@ -57,6 +57,8 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 /**
+ * 与所使用平台依赖的配置
+ *
  * Utility that detects various properties specific to the current runtime
  * environment, such as Java version and the availability of the
  * {@code sun.misc.Unsafe} object.

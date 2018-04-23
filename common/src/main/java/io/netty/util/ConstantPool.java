@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 常量池
  * A pool of {@link Constant}s.
  *
  * @param <T> the type of the constant
